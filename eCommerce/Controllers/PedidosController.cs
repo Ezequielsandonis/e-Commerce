@@ -10,13 +10,13 @@ using eCommerce.Models;
 
 namespace eCommerce.Controllers
 {
-    public class PedidosController : Controller
+    public class PedidosController : BaseController
     {
-        private readonly AppDbContext _context;
+    
 
-        public PedidosController(AppDbContext context)
+        public PedidosController(AppDbContext context) : base(context)
         {
-            _context = context;
+
         }
 
         // GET: Pedidos
@@ -35,14 +35,27 @@ namespace eCommerce.Controllers
             }
 
             var pedido = await _context.Pedidos
+                //relacion con usuario
                 .Include(p => p.Usuario)
+                //relacion con detalle pedido
+                .Include(p=> p.DetallesPedido)
+                //relacion de los productos de dicho pedido
+                .ThenInclude(dp=>dp.Producto)
                 .FirstOrDefaultAsync(m => m.PedidoId == id);
             if (pedido == null)
             {
                 return NotFound();
             }
 
+            //direccion del pedido
+            //asignar la direccion del pedido encontrando la direccionIdSeleccionada
+            pedido.Direccion = await _context.Direcciones.FirstOrDefaultAsync(d => d.DireccionId == pedido.DireccionIdSeleccionada)
+            //en caso de algun error crear una direccion predeterminada
+            ?? new Direccion();
+
             return View(pedido);
+
+            
         }
 
         // GET: Pedidos/Create

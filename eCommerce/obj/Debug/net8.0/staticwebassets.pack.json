@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\eCommerce.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
       "Id": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\js\\bradcrumb.js",
+      "PackagePath": "staticwebassets\\js\\bradcrumb.js"
     },
     {
       "Id": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\js\\site.js",

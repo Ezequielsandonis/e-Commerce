@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Tittle"] = "Dashboard";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Vista Administrador</h1>
+    <p class="lead">Enlaces a las funcionalidades;</p>
+
+    <div class="list-group">
+      
+        <a href="@Url.Action("Index","Usuarios")" class="list-group-item list-group-action">Usuarios</a>
+        <a href="@Url.Action("Index","Roles")" class="list-group-item list-group-action">Roles</a>
+        <a href="@Url.Action("Index","Productos")" class="list-group-item list-group-action">Productos</a>
+        <a href="@Url.Action("Index","Pedidos")" class="list-group-item list-group-action">Direcciones</a>
+        <a href="@Url.Action("Index","DetallesPedidos")" class="list-group-item list-group-action">Detalle-Pedido</a>
+        <a href="@Url.Action("Index","Categorias")" class="list-group-item list-group-action">Categorias</a>
+
+    </div>
+
+</div>
+

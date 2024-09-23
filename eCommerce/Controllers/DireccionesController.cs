@@ -10,14 +10,12 @@ using eCommerce.Models;
 
 namespace eCommerce.Controllers
 {
-    public class DireccionesController : Controller
+    public class DireccionesController : BaseController
     {
-        private readonly AppDbContext _context;
 
-        public DireccionesController(AppDbContext context)
-        {
-            _context = context;
-        }
+
+        public DireccionesController(AppDbContext context):base(context) { }
+       
 
         // GET: Direcciones
         public async Task<IActionResult> Index()

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qlSlt5uT45s5qzOQel3TZ3IBtRZamrsZsa+OLv28zqg=",
+  "Hash": "QILlKeSIa+EaVg92K5jIEM4XJwUG970nixLT2Pht4Q4=",
   "Source": "eCommerce",
   "BasePath": "_content/eCommerce",
   "Mode": "Default",
@@ -93,6 +93,25 @@
       "OriginalItemSpec": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\eCommerce.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\css\\bootstrap.min.css",
+      "SourceId": "eCommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\",
+      "BasePath": "_content/eCommerce",
+      "RelativePath": "css/bootstrap.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\bootstrap.min.css"
+    },
+    {
       "Identity": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\css\\site.css",
       "SourceId": "eCommerce",
       "SourceType": "Discovered",
@@ -129,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\js\\bradcrumb.js",
+      "SourceId": "eCommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\",
+      "BasePath": "_content/eCommerce",
+      "RelativePath": "js/bradcrumb.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\bradcrumb.js"
     },
     {
       "Identity": "C:\\Users\\NG By ROG\\Desktop\\Repositorios-Git\\eCommerce\\eCommerce\\wwwroot\\js\\site.js",

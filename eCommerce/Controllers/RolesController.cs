@@ -10,13 +10,13 @@ using eCommerce.Models;
 
 namespace eCommerce.Controllers
 {
-    public class RolesController : Controller
+    public class RolesController : BaseController
     {
-        private readonly AppDbContext _context;
+      
 
-        public RolesController(AppDbContext context)
+        public RolesController(AppDbContext context) : base(context)
         {
-            _context = context;
+     
         }
 
         // GET: Roles

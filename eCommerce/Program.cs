@@ -1,4 +1,5 @@
 using eCommerce.Data;
+using eCommerce.Servicios;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,8 +29,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
-
-//OTROS SERVICIOS
+//otros servicios
+builder.Services.AddScoped<IProductoService, ProductoService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 
 
 

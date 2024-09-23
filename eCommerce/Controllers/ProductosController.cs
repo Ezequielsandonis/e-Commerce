@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using eCommerce.Data;
 using eCommerce.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Drawing.Text;
 
 namespace eCommerce.Controllers
 {
-    public class ProductosController : Controller
+    //heredar del controlador base
+    public class ProductosController : BaseController
     {
-        private readonly AppDbContext _context;
+      
 
-        public ProductosController(AppDbContext context)
+        public ProductosController(AppDbContext context) : base(context)
         {
-            _context = context;
+           
         }
 
         // GET: Productos
@@ -48,7 +51,7 @@ namespace eCommerce.Controllers
         // GET: Productos/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Descripcion");
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nombre");
             return View();
         }
 
@@ -59,15 +62,23 @@ namespace eCommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductoId,Codigo,Nombre,Modelo,Descripcion,Precio,Imagen,CategoriaId,Stock,Marca,Activo")] Producto producto)
         {
-            if (ModelState.IsValid)
+           //buscar categoria en base a la CategoriaId Seleccionada y asignarla al apropiedad categoria del producto                              
+          var cat = await _context.Categorias
+         .Where(c => c.CategoriaId == producto.CategoriaId).FirstOrDefaultAsync();
+
+            if (cat != null )
             {
+                producto.Categoria = cat;
                 _context.Add(producto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Descripcion", producto.CategoriaId);
+            ViewData["CategoriaId"]=new SelectList(_context.Categorias,"CategoriaId","Nombre",producto.CategoriaId);
             return View(producto);
+
         }
+        
+
 
         // GET: Productos/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -82,6 +93,8 @@ namespace eCommerce.Controllers
             {
                 return NotFound();
             }
+
+
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Descripcion", producto.CategoriaId);
             return View(producto);
         }
@@ -98,8 +111,13 @@ namespace eCommerce.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            //buscar categoria en base a la CategoriaId Seleccionada y asignarla al apropiedad categoria del producto                              
+            var cat = await _context.Categorias
+           .Where(c => c.CategoriaId == producto.CategoriaId).FirstOrDefaultAsync();
+
+            if (cat != null)
             {
+                producto.Categoria = cat;
                 try
                 {
                     _context.Update(producto);
@@ -116,8 +134,11 @@ namespace eCommerce.Controllers
                         throw;
                     }
                 }
+               
                 return RedirectToAction(nameof(Index));
             }
+
+             
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Descripcion", producto.CategoriaId);
             return View(producto);
         }

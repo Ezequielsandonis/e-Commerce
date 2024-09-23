@@ -10,13 +10,12 @@ using eCommerce.Models;
 
 namespace eCommerce.Controllers
 {
-    public class DetallesPedidosController : Controller
+    public class DetallesPedidosController : BaseController
     {
-        private readonly AppDbContext _context;
 
-        public DetallesPedidosController(AppDbContext context)
+        public DetallesPedidosController(AppDbContext context):base(context) 
         {
-            _context = context;
+          
         }
 
         // GET: DetallesPedidos

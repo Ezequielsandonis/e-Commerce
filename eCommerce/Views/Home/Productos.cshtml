@@ -1,0 +1,144 @@
+﻿@using eCommerce.Models.ViewModels;
+@model ProductosPaginadosViewModel 
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="container">
+
+    <nav aria-label="breadcrumb">
+
+        @*Este breadcrumb Funciona con funciones js*@
+        <ol class="breadcrumb" id="breadcrumb-container">
+        </ol>
+
+    </nav>
+
+    <div class="row mb-3">
+
+        <nav class="col-md-3">
+
+            <ul class="list-group">
+
+                <li class="list-group-item active">Filtrar resultados</li>
+                <li class="list-group-item">
+                    <input type="checkbox" class="form-check-input" id="todasCheckbox" data-categoria="" checked />
+                    <label class="form-check-label" for="todasCheckbox">Todas</label>
+                </li>
+
+                @foreach (var categoria in ViewBag.Categoria)
+                {
+                    <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input categoriaCheckbox" id="categoriaCheckbox_@categoria.CategoriaId" data-categoria="@categoria.CategoriaId" />
+                        <label class="form-check-label" for="categoriaCheckbox_@categoria.CategoriaId">@categoria.Nombre</label>
+                    </li>
+                }
+
+            </ul>
+
+            <div class="d-flex mb-3">
+                @*Restablecer filtros*@
+                <form action="@Url.Action("Productos","Home")" method="get">
+                    <button type="submit"class="btn btn-link">Restablecer filtros</button>
+                </form>
+            </div>
+
+        </nav>
+
+        @*Lista de  prodcutos-recargar la vista parcial*@
+        <main role="main" class="col-md-9 pb-3">
+            <div id="productosContainer">
+                @await Html.PartialAsync("~/Views/Shared/Partials/_ProductosPartial.cshtml", Model)
+
+            </div>
+        </main>
+
+    </div>
+
+</div>
+
+@{
+    //obtener el nombre del controlador y el nombre del metodo para agregar el producto al carrito
+
+    string? controllerName = Context.GetRouteValue("controller") as string;
+    string? actionName = Context.GetRouteValue("action") as string;
+}
+
+<script>
+    var controllerName = '@controllerName';
+    var actionName = '@actionName';
+</script>
+
+@section Scripts{
+    <script>
+        //llamar a la funcion
+        $(document).ready(function() {
+            //ejecutar la funcion
+            $('#todasCheckbox').on('change', function() {
+                //manejar el evento de click en "Todas"
+                var idChecked = $(this).prop('checked');
+                //"deseleccionar todos los elementos de categorias individuales"
+                $('.categoriaCheckbox').prop('checked', isChecked);
+                //filtrar por categorias seleccionadas
+                filtrarProductos();
+
+            });
+
+            //manejar evento de click en un checbox de una categoria individual
+            $('.categoriaCheckbox').on('change', function() {
+                //verificar si las categorias estan marcadas
+                var allChecked = $('.categoriaCheckbox:checked').length === $('.categoriaCheckbox').length;
+                //actualizar el estado de todas segun el estado de categorias individuales
+                $('#todasCheckbox').prop('checked', allChecked)
+                filtrarProductos();
+            });
+
+            //funcion filtrar productos
+            function filtrarProductos()
+            {
+                //inicialzar la variable 
+                var selectedCategorias = [];
+
+                $('.categoriaCheckbox:checked').each(function () {
+                    var categoriaId = $(this).data('categoria');
+                    selectedCategorias.push(categoriaId);
+                });
+
+                //validar si se filtro por categoria, sino mostrar todos los productos
+                if (selectedCategorias.length === 0) {
+                    $('.productoItem').show();
+                } else {
+                    $('.productoItem').hide();
+                    selectedCategorias.forEach(function(categoriaId) {
+                        $('.productoItem[data-categoria="' + categoriaId + '"]').show();
+                    });
+                }
+
+                //solicitud ajax para cargar la vista parcial
+                var url = '@Url.Action("Productos","Home")';
+                //llenar valores con los datos requeridos de la vista
+                var data = {
+                    pagina: @Model.PaginaActual,
+                    categoriaId: selectedCategorias.join(","),
+                    busqueda: '@Model.Busqueda'
+                }
+                //request
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    data: data,
+                    success: function (result) {
+                        //mostrar lo que devuelva el controlador (en base a los filtros)
+                        $('#productosContainer').html(result);
+                    },
+                        //manehar error
+                        error:function(xhr, status, error) {
+                            console.log(error);
+                        }
+                    
+                });
+            }
+        });
+    </script>
+}

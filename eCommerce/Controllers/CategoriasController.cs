@@ -10,22 +10,22 @@ using eCommerce.Models;
 
 namespace eCommerce.Controllers
 {
-    public class CategoriasController : Controller
+    public class CategoriasController : BaseController
     {
-        private readonly AppDbContext _context;
-
-        public CategoriasController(AppDbContext context)
+     
+        public CategoriasController(AppDbContext context): base(context)
         {
-            _context = context;
+         
         }
 
-        // GET: Categorias
+
+        //lista de categorías
         public async Task<IActionResult> Index()
         {
             return View(await _context.Categorias.ToListAsync());
         }
 
-        // GET: Categorias/Details/5
+        //Detalles de una categoría
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,6 +42,8 @@ namespace eCommerce.Controllers
 
             return View(categoria);
         }
+
+
 
         // GET: Categorias/Create
         public IActionResult Create()
