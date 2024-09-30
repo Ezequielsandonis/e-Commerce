@@ -7,12 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using eCommerce.Data;
 using eCommerce.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eCommerce.Controllers
 {
+    //restriccion de rol
+    [Authorize(Policy = "RequireAdminOrStaff")]
     public class CategoriasController : BaseController
     {
-     
+
+       
         public CategoriasController(AppDbContext context): base(context)
         {
          

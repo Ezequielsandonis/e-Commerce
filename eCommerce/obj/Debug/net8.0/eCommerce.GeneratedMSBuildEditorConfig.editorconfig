@@ -38,6 +38,34 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Banners/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFubmVyc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Banners/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFubmVyc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Banners/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFubmVyc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Banners/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFubmVyc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Banners/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFubmVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Carrito/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycml0b1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Carrito/PagoCompletado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2Fycml0b1xQYWdvQ29tcGxldGFkby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Categorias/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -136,6 +164,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Pedidos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Perfil/AgregarDireccion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyZmlsXEFncmVnYXJEaXJlY2Npb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Perfil/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyZmlsXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/NG By ROG/Desktop/Repositorios-Git/eCommerce/eCommerce/Views/Productos/Create.cshtml]

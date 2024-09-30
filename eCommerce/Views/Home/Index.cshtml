@@ -28,6 +28,36 @@
         </div>
     </div>
 
+    <br />
+
+    @*BANNER*@
+    <div id="Mycarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @{
+                var first = true;
+            }
+            @foreach (var item in ViewBag.Banners)
+            {
+                <div class="carousel-item text-center @(first ? "active": "")">
+                    <img class="d-block w-75 mx-auto" src="@item.ImageUrl" />
+                </div>
+                first = false;
+            }
+        </div>
+
+        <a class="carousel-control-prev" href="#Mycarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#Mycarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+    </div>
+
+
     <h2 class="my-4">Productos destacados</h2>
     <div class="row" id="productosContainer">
         @*generar productos destacados*@

@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using eCommerce.Data;
 using eCommerce.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eCommerce.Controllers
 {
+    [Authorize(Policy = "RequireAdminOrStaff")]
     public class UsuariosController : BaseController
     {
       

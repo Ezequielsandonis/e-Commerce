@@ -1,0 +1,127 @@
+﻿@model eCommerce.Models.ViewModels.ProcederConCompraViewModel
+@{
+    ViewData["Title"] = "Carrito";
+}
+
+<h2>Carrito de compras</h2>
+
+@*Valodar que el carrito tenga valores*@
+@if (Model.Carrito.Items.Count == 0)
+{
+    <div class="alert alert-info">
+        <p>No hay productos en el carrito</p>
+        <a href="/Home" class="btn btn-primary">Seguir comprando.</a>
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Carrito.Items)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                      
+
+                        <td>
+                            @*validar cantidad*@
+                            @if (item.Cantidad < 1)
+                            {
+                                <form>
+                                    <div class="alert alert-danger" role="alert">
+                                        <i class="fas fa-exclamation-circle"> Agotado</i>
+                                    </div>
+                                    <input type="hidden" name="id" value="@item.ProductoId" />
+                                </form>
+                            }
+                            else
+                            {
+                                @*dar opcion de actualizar la cantidad*@
+                                <form asp-action="ActualizarCantidad" asp-controller="Carrito" method="post">
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" name="cantidad" class="form-control" min="1" max="@item.Producto.Stock" value="@item.Cantidad" />
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-sync-alt"></i></button>
+                                        </div>
+                                    </div>
+                                    @*id del producto*@
+                                    <input type="hidden" name="id" value="@item.ProductoId" />
+                                </form>
+                            }
+                        </td>
+
+                        <td>@item.Precio</td>
+                        <td>@item.Subtotal.ToString("C")</td>
+                        <td>
+                            @*Acciones*@
+                            <form asp-action="EliminarProducto" asp-controller="Carrito" method="post">
+                                <div class="input-group input-group-sm">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-trash"></i></button>
+                                </div>
+                                @*id del producto*@
+                                <input type="hidden" name="id" value="@item.ProductoId" />
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td class="font-weight-bold">Total:</td>
+                    <td class ="font-weight-bold">@Model.Carrito.Total.ToString("C")</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    @*botn para vaciar carrito*@
+    <div class="text-right">
+        <form asp-action="VaciarCarrito" asp-controller="Carrito" method="post">
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Vaciar carrito</button>
+        </form>
+    </div>
+
+    @*Validar que el usaurio este logueado para prodceder con compra*@
+    <div class="text-left">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <form asp-controller="Carrito" asp-action="ProcederConCompra" method="post">
+                <h1>Direcciones de envío</h1>
+                @if (Model.Direcciones.Count==0)
+                {
+                    <p>Sin direcciones de envío para su usuario. Acceda a su perfil para agregar una dirección</p>
+                }
+                else
+                {
+                    @foreach (var direccion in Model.Direcciones)
+                    {
+                        <div class="form-check">
+                            <input type="radio" name="direccionIdSeleccionada" class="form-check-input"
+                                   value="@direccion.DireccionId" id="@direccion.DireccionId" for="@direccion.DireccionId" required />
+                            <label class="form-check-label" for="@direccion.DireccionId">
+                                @direccion.Address,@direccion.Ciudad, @direccion.Provincia, @direccion.CodigoPostal
+                            </label>
+                        </div>
+                    }
+                    <input type="hidden" name="montoTotalString" value="@Model.Carrito.Total" />
+                    <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-bag-shopping"></i> Proceder con la compra</button>
+                }
+            </form>
+        }
+        else
+        {
+            <a class="btn btn-primary" asp-action="Login" asp-controller="Account">Iniciar sesión para proceder con la compra.</a>
+        }
+    </div>
+}
+

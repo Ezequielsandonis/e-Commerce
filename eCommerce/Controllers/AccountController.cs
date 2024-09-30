@@ -99,12 +99,7 @@ namespace eCommerce.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
-            //verificar si el usuario ya esta logueado
-            //se usa la identity que esta almacenada en una cookie
-            if (User.Identity != null && User.Identity.IsAuthenticated)
-            {
-            
-            }
+          
 
             return View();
         }
@@ -134,7 +129,7 @@ namespace eCommerce.Controllers
                     if (rol != null)
                     {
                         //asignarle el rol 
-                        new Claim(ClaimTypes.Role, rol.Nombre);
+                        identity.AddClaim(new Claim(ClaimTypes.Role, rol.Nombre));
                     }
 
                     //Iniciar sesión al usuario

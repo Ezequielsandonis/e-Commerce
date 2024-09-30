@@ -20,12 +20,14 @@ namespace eCommerce.Data
         public DbSet<Direccion> Direcciones { get; set; } = null!;
         public DbSet<Detalle_Pedido> DetallePedidos { get; set; } = null!;
         public DbSet<Categoria> Categorias { get; set; } = null!;
+        public DbSet<Banner> Banners { get; set; } = null!;
 
 
         //--configurar relaciones y resstricciones
 
 
         //metodo protegido de sobreescritura
+        //aqui se establecen las relaciones al crear el modelo
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -75,7 +77,7 @@ namespace eCommerce.Data
               .WithOne(p => p.Categoria)
 
               .HasForeignKey( p=> p.CategoriaId)
-              //si se borra una cateigia el campo categoria Id de los productos asociados se establece en null
+              //si se borra una categoría el campo categoria Id de los productos asociados se establece en null
               //no se eliminan los productos asociados
               .OnDelete(DeleteBehavior.Restrict);
 

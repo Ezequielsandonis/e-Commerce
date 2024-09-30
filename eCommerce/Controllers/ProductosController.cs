@@ -9,10 +9,13 @@ using eCommerce.Data;
 using eCommerce.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Drawing.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eCommerce.Controllers
 {
     //heredar del controlador base
+    //restriccion del controlador
+    [Authorize(Policy = "RequireAdminOrStaff")]
     public class ProductosController : BaseController
     {
       

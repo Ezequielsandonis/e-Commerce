@@ -22,7 +22,7 @@ namespace eCommerce.Models
 
         //ref a Direccion
         public int DireccionIdSeleccionada { get; set; } // UN usuario puede tener multiples direcciones
-      // [ForeignKey("DireccionId")]
+      //[ForeignKey("DireccionId")]
         public Direccion Direccion { get; set; } = null!;
 
         public decimal Total { get; set; }

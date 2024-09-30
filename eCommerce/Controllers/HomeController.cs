@@ -24,6 +24,9 @@ namespace eCommerce.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.Categoria = await _categoriaService.GetCategoria();
+            //listar los banners
+            ViewBag.Banners =  _context.Banners.ToList();
+
             try
             {
                 //listar los productos destcados 

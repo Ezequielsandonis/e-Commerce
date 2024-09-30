@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using eCommerce.Data;
 using eCommerce.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eCommerce.Controllers
 {
+    [Authorize(Policy = "RequireAdminOrStaff")]
     public class DireccionesController : BaseController
     {
 
@@ -46,7 +48,7 @@ namespace eCommerce.Controllers
         // GET: Direcciones/Create
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Ciudad");
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombre");
             return View();
         }
 
@@ -63,7 +65,7 @@ namespace eCommerce.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Ciudad", direccion.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombre", direccion.UsuarioId);
             return View(direccion);
         }
 
@@ -80,7 +82,7 @@ namespace eCommerce.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Ciudad", direccion.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombre", direccion.UsuarioId);
             return View(direccion);
         }
 
@@ -116,7 +118,7 @@ namespace eCommerce.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Ciudad", direccion.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Nombre", direccion.UsuarioId);
             return View(direccion);
         }
 

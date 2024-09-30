@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace eCommerce.Controllers
 {
     //heredar del controlador base
+    [Authorize(Policy = "RequireAdminOrStaff")]
     public class DashboardController : BaseController
     {
         
@@ -14,7 +15,6 @@ namespace eCommerce.Controllers
         }
 
         //Vista para mostrar los enlaces a otros cruds
-
         public IActionResult Index()
         {
             return View();
