@@ -55,30 +55,31 @@ namespace eCommerce.Controllers
             return View();
         }
 
-        // POST: Categorias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoriaId,Nombre,Descripcion")] Categoria categoria)
         {
+            //verifica el estado del modelo 
             if (ModelState.IsValid)
             {
+                //agrega una nueva categoría
                 _context.Add(categoria);
+                //guarda los cambios
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(categoria);
         }
 
-        // GET: Categorias/Edit/5
+        // GET: EDITAR
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            //crea una variable y le asigna el Id de la categoria
             var categoria = await _context.Categorias.FindAsync(id);
             if (categoria == null)
             {
@@ -87,27 +88,29 @@ namespace eCommerce.Controllers
             return View(categoria);
         }
 
-        // POST: Categorias/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Editar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoriaId,Nombre,Descripcion")] Categoria categoria)
         {
+            //verifica si existe el Id
             if (id != categoria.CategoriaId)
             {
                 return NotFound();
             }
 
+            //verifiacion del estado del modelo 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    //actualiza la categoría
                     _context.Update(categoria);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    //llama al metodo para verificar si la categoría existe
                     if (!CategoriaExists(categoria.CategoriaId))
                     {
                         return NotFound();

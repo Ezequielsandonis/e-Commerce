@@ -4,6 +4,16 @@
 }
 
 <div class="container bg-light p-4">
+
+    @*validar-error*@
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger text-center">
+            @ViewBag.Error
+        </div>
+    }
+
+
     @*Validar que el usuario no este con la sesión iniciada*@
     @if (User.Identity != null && User.Identity.IsAuthenticated)
     {

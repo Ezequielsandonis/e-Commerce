@@ -51,6 +51,10 @@ namespace eCommerce.Models
         [Required]
         public int RolId { get; set; }
 
+        public string? Token {  get; set; }
+        public DateTime ? FechaExpiracion { get; set; }
+        public bool Estado {  get; set; }
+
         //referencias fk
         [ForeignKey("RolId")]
         public Rol Rol { get; set; } = null!;
